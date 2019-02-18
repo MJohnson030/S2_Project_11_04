@@ -24,21 +24,25 @@
    otherwise nothing happens and the program continues to run. */
    
     
- var minsLeft = 0;
- var secsLeft = 15;
- var timeLeft  = (minsLeft * 60) + secsLeft; 
- var secsString =   
+   var minsLeft = 30;
+   var secsLeft = 0;
+   var timeLeft = minsLeft * 60 + secsLeft;
+   var clockId = setInterval("countDown()", 1000);
 
- function countDown(){
- minsLeft = Math.floor(timeLeft/60);
- secsLeft = (timeLeft - 60) * minsLeft;
- addLeadingZero (minsString = addLeadingZero(minsLeft));
- addLeadingZero (secsString);
- getElementByID(minsString = );
-}
+   function countDown(){
+      minsLeft = Math.floor(timeLeft / 60);
+      secsLeft = timeLeft - 60 * minsLeft;
+      var minsString = addLeadingZero(minsLeft);
+      var secsString = addLeadingZero(secsLeft);
+      document.getElementById("minutes").textContent = minsString;
+      document.getElementById("seconds").textContent = secsString;
+      checkTimer();
+   timeLeft --;
+   }
 
-function checkTimer() {
-   if (timeLeft === 0) stopClock();
+function stopClock() {
+    document.getElementById("TimeHead").insertAdjacentHTML('beforeend', "<br />(Order Expired)" );
+    clearInterval(clockId);
 }
 
 
